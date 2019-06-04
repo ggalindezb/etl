@@ -1,11 +1,17 @@
-/.bundle/
+# Ignore generated docs
 /.yardoc
-/_yardoc/
-/coverage/
-/doc/
-/pkg/
-/spec/reports/
-/tmp/
+/_yardoc
+/doc
+README.html
 
-# rspec failure tracking
+# Ignore generated files
+/.bundle
+/pkg
+/spec/reports
+/tmp
+
+# Ignore test generated files
+.rspec
 .rspec_status
+spec/examples.txt
+/coverage

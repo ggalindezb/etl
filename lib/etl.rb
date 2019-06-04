@@ -1,5 +1,26 @@
-require "etl/version"
+# frozen_string_literal: true
 
+require 'etl/version'
+
+require 'rubygems'
+require 'bundler'
+Bundler.require(:default)
+
+# require 'json'
+# require 'yaml'
+
+require 'etl/process'
+require 'etl/source'
+
+# Place exception here
 module Etl
-  # Your code goes here...
+  class << self
+    def create_process(&block)
+      return nil unless block_given?
+
+      process = Process.new
+      block.call(process)
+      process
+    end
+  end
 end
