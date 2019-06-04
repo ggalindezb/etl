@@ -6,9 +6,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require(:default)
 
-# require 'json'
-# require 'yaml'
-
+require 'etl/util/status'
 require 'etl/process'
 require 'etl/source'
 

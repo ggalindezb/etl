@@ -7,11 +7,12 @@ README.html
 # Ignore generated files
 /.bundle
 /pkg
-/spec/reports
+/samples
 /tmp
 
 # Ignore test generated files
 .rspec
 .rspec_status
-spec/examples.txt
 /coverage
+/spec/reports
+spec/examples.txt
