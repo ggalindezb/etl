@@ -29,6 +29,7 @@ module Etl
       # This may be done in rails. Provide a useful interface in that case
       # TODO: Load the thing wherever it needs to go
       if bootstrapped?
+        finished!
       else
         failed!
       end

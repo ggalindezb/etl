@@ -1,18 +1,9 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'rake'
-load 'Rakefile'
 
 describe Etl::Process do
   let(:file_name) { 'samples/small.csv' }
-
-  before do
-    unless Pathname.new(file_name).exist?
-      puts 'Sample files unavailable. Creating...'
-      Rake::Task['sample:csv:small'].invoke
-    end
-  end
 
   describe 'Process creation' do
     context 'with valid params' do
@@ -23,11 +14,33 @@ describe Etl::Process do
         end
       end
 
-      it 'bootstraps a source' do
+      it 'can bootstrap a new process' do
         expect(subject.status).to be_zero
-        expect(subject.source.payload).to be_nil
+        expect(subject.source.payload).to be_empty
         subject.bootstrap
-        expect(subject.source.payload).not_to be_nil
+        expect(subject.source.payload).not_to be_empty
+      end
+
+      it 'can run a bootstrapped process' do
+        expect(subject.status).to be_zero
+        subject.bootstrap
+        subject.run
+        expect(subject).to be_finished
+      end
+    end
+
+    context 'with invalid params' do
+      subject do
+        Etl.create_process do |process|
+          process.source.type = :unsupported
+          process.source.location = file_name
+        end
+      end
+
+      it 'fails to bootstrap' do
+        expect(subject.status).to be_zero
+        subject.bootstrap
+        expect(subject).to be_failed
       end
     end
   end
