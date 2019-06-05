@@ -117,6 +117,17 @@ process.persist
 
 ## Development
 
+TODO: Test stuff
+`$ rake`
+
+Runs rspec, rubocop, generates coverage report
+
+TODO: Explain how to generate csv files and the rest of the samples
+NOTE: This will take ~5.5 mins, super slow, would need a parallel version
+```
+$ rake sample:csv:all
+```
+
 TODO: Explain how to use JSON Server to provide a fake API
 
 ```

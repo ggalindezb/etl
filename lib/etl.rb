@@ -7,6 +7,7 @@ require 'bundler'
 Bundler.require(:default)
 
 require 'etl/util/status'
+require 'etl/strategies/csv_strategy'
 require 'etl/process'
 require 'etl/source'
 

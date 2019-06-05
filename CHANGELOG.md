@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- More useful documentation
+- [Base] General extraction strategy, still static
+- [Base] Basic, more useful documentation
 - [Base] CSV Sample strategy: File generation and sourcing
 - [Base] Initial application

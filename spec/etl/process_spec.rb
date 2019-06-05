@@ -38,7 +38,7 @@ describe Etl::Process do
       end
 
       it 'fails to bootstrap' do
-        expect(subject.status).to be_zero
+        expect(subject).to be_initialized
         subject.bootstrap
         expect(subject).to be_failed
       end
