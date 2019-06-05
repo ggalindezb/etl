@@ -7,9 +7,11 @@ require 'bundler'
 Bundler.require(:default)
 
 require 'etl/util/status'
+require 'etl/strategy'
 require 'etl/strategies/csv_strategy'
-require 'etl/process'
 require 'etl/source'
+require 'etl/generator'
+require 'etl/process'
 
 # Place exception here
 module Etl

@@ -45,4 +45,28 @@ namespace :sample do
       generate_csv(:large)
     end
   end
+
+  namespace :json do
+    desc 'Generate CSV samples'
+    task :all do
+      generate_json(:small)
+      generate_json(:medium)
+      generate_json(:large)
+    end
+
+    desc 'Generate a JSON sample, ~2 MB'
+    task :small do
+      generate_json(:small)
+    end
+
+    desc 'Generate a JSON sample, ~20 MB'
+    task :medium do
+      generate_json(:medium)
+    end
+
+    desc 'Generate a JSON sample, ~200 MB'
+    task :large do
+      generate_json(:large)
+    end
+  end
 end

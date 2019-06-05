@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 module Etl
   # Source data from a give type and location
   class Source
@@ -27,17 +25,17 @@ module Etl
     end
 
     def validate
-      strategy = source_strategy
-      return false if strategy.nil?
+      strategy = Etl::Strategy.for(@type)
+      return false && failed! if strategy.nil?
 
-      strategy.validate.tap { |x| x ? validated! : failed! }
+      strategy.validate(self).tap { |x| x ? validated! : failed! }
     end
 
     def fetch
-      strategy = source_strategy
+      strategy = Etl::Strategy.for(@type)
 
       if strategy && validated?
-        @payload = strategy.fetch
+        @payload = strategy.fetch(self)
         sourced!
       else
         failed!

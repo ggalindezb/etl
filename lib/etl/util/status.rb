@@ -5,9 +5,8 @@ module Etl
   module Status
     DEFAULT_STATES = {
       initialized: 0,
-      bootstrapped: 1,
-      finished: 2,
-      failed: 3
+      finished: 1,
+      failed: 2
     }.freeze
 
     def self.included(base)
