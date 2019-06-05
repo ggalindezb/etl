@@ -117,6 +117,16 @@ process.persist
 
 ## Development
 
+TODO: Explain how to use JSON Server to provide a fake API
+
+```
+$ npm install -g json-server
+$ rake sample:json:small
+$ json-server --watch samples/small.json --port 3001
+```
+
+API is now available at `localhost:3001/payroll`
+
 ...
 
 ## Contributing
