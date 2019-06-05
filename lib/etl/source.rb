@@ -26,39 +26,34 @@ module Etl
       initialized!
     end
 
-    # TODO: Validate the source on a per strategy basis
-    # ie.
-    # - File based location needs a file to exist
-    # - CSV has commas
-    # - JSON has brackets
-    # - API yields 200
     def validate
-      validate_strategy.tap { |x| x ? validated! : failed! }
+      strategy = source_strategy
+      return false if strategy.nil?
+
+      strategy.validate.tap { |x| x ? validated! : failed! }
     end
 
-    # TODO: Run the given strategy
     def fetch
-      validated? ? fetch_strategy : failed!
+      strategy = source_strategy
+
+      if strategy && validated?
+        @payload = strategy.fetch
+        sourced!
+      else
+        failed!
+      end
     end
 
     private
 
-    # Placeholder methods. This will be replaced by a strategy
-    def validate_strategy
-      # @strategy.validate.tap
-      case @type&.to_sym
-      when :csv
-        Pathname.new(@location).exist?
-      else
-        false
-      end
-    end
+    def source_strategy
+      strategy_constant = "#{@type.to_s.upcase}Strategy"
 
-    def fetch_strategy
-      case @type&.to_sym
-      when :csv
-        @payload = File.read(@location)
-        sourced!
+      if Etl::Strategies.const_defined?(strategy_constant)
+        @source_strategy ||= Etl::Strategies.const_get(strategy_constant).new(self)
+      else
+        failed!
+        nil
       end
     end
   end
