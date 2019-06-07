@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Support
-  # Test files generation
+  # Generates dummy files for testing with the same quantity of data, different
+  # file sizes, which depend on the output's format
   module Generation
-    # COLUMNS = %w[name last_name nationality origin phone bank iban currency segment].freeze
     RECORD_SIZE = {
       small: 8_500,
       medium: 85_000,
@@ -11,22 +11,14 @@ module Support
     }.freeze
 
     def generate_csv(size)
-      check_dir
-
-      File.open("samples/#{size}.csv", 'w') do |sample_file|
-        RECORD_SIZE[size].times { sample_file.write(dummy_data.join(',')) }
-        sample_file.close
-      end
+      dummy_file(size, :csv) { |sample_file| RECORD_SIZE[size].times { sample_file.write(csv_string) } }
     end
 
     def generate_json(size)
-      check_dir
-
-      File.open("samples/#{size}.json", 'w') do |sample_file|
+      dummy_file(size, :json) do |sample_file|
         sample_file.write('[')
         RECORD_SIZE[size].pred.times { sample_file.write(json_string + ',') }
         sample_file.write(json_string + ']')
-        sample_file.close
       end
     end
 
@@ -34,6 +26,15 @@ module Support
 
     def check_dir
       Dir.mkdir('samples') unless Dir.exist?('samples')
+    end
+
+    def dummy_file(size, type)
+      check_dir
+
+      File.open("samples/#{size}.#{type}", 'w') do |sample_file|
+        yield sample_file
+        sample_file.close
+      end
     end
 
     def dummy_names
@@ -45,6 +46,10 @@ module Support
        Faker::PhoneNumber.phone_number_with_country_code, Faker::Bank.name, Faker::Bank.iban, Faker::Currency.code, Faker::IndustrySegments.industry]
     rescue Faker::UniqueGenerator::RetryLimitExceeded
       Faker::UniqueGenerator.clear
+    end
+
+    def csv_string
+      dummy_data.join(',') + "\n"
     end
 
     def json_string
