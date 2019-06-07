@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Etl
+module MiniEtl
   # Track a status
   module Status
     DEFAULT_STATES = {

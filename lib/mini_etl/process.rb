@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Etl
+module MiniEtl
   # ETL Process wrapper
   # Should this go all the way?
   # Probably

@@ -2,16 +2,16 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'etl/version'
+require 'mini_etl/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'etl'
-  spec.version       = Etl::VERSION
+  spec.name          = 'mini_etl'
+  spec.version       = MiniEtl::VERSION
   spec.authors       = ['Gerardo Galindez']
   spec.email         = ['ggalindezb@gmail.com']
 
   spec.summary       = 'Extract/Transform/Load wrapper'
-  spec.homepage      = 'https://github.com/ggalindezb/etl'
+  spec.homepage      = 'https://github.com/ggalindezb/mini_etl'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.

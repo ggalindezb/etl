@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Etl
+module MiniEtl
   # Source data from a give type and location
   class Source
     VALID_STATES = {
@@ -25,14 +25,14 @@ module Etl
     end
 
     def validate
-      strategy = Etl::Strategy.for(@type)
+      strategy = MiniEtl::Strategy.for(@type)
       return false && failed! if strategy.nil?
 
       strategy.validate(self).tap { |x| x ? validated! : failed! }
     end
 
     def fetch
-      strategy = Etl::Strategy.for(@type)
+      strategy = MiniEtl::Strategy.for(@type)
 
       if strategy && validated?
         @payload = strategy.fetch(self)

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Etl::Source do
+describe MiniEtl::Source do
   let(:source) { described_class.new(type: :csv, location: file_name) }
 
   describe '#new' do
