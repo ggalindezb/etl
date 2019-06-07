@@ -3,6 +3,8 @@
 Basic toolkit for Extract/Transform/Load operations. Abstracts the details of
 performing sourcing, intermediate structure generation and data persistance.
 
+[![Gem Version](https://badge.fury.io/rb/mini_etl.svg)](https://badge.fury.io/rb/mini_etl)
+
 ## Usage
 
 ### Sourcing
