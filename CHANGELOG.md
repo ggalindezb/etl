@@ -6,7 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2019-06-06
+
 ### Added
+- [Task] Improve spec coverage
+- [Base] Introduce Generator for structure generation
+- [Base] Factor out strategies
 - [Base] General extraction strategy, still static
 - [Base] Basic, more useful documentation
 - [Base] CSV Sample strategy: File generation and sourcing

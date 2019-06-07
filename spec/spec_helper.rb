@@ -8,7 +8,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'bundler/setup'
-require 'etl'
+require 'mini_etl'
 require 'pry'
 require 'rake'
 load 'Rakefile'

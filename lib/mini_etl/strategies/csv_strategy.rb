@@ -1,6 +1,6 @@
 require 'csv'
 
-module Etl
+module MiniEtl
   module Strategies
     # Extract/Transform strategy for a CSV input
     class CSVStrategy

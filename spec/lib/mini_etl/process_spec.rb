@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Etl::Process do
+describe MiniEtl::Process do
   describe '#initialize' do
     subject { described_class.new }
     it { is_expected.to be_initialized }
@@ -10,7 +10,7 @@ describe Etl::Process do
 
   describe '#bootstrap' do
     subject do
-      Etl.create_process do |process|
+      MiniEtl.create_process do |process|
         process.source.type = type
         process.source.location = location
       end
@@ -41,7 +41,7 @@ describe Etl::Process do
 
   describe '#generate' do
     subject do
-      Etl.create_process do |process|
+      MiniEtl.create_process do |process|
         process.source.type = type
         process.source.location = location
       end

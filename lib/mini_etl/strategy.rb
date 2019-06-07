@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Etl
+module MiniEtl
   # Fetches a Strategy kind class for a given type of data
   # extraction/transformation
   class Strategy

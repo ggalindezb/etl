@@ -1,4 +1,4 @@
-# ETL
+# Mini ETL
 
 Basic toolkit for Extract/Transform/Load operations. Abstracts the details of
 performing sourcing, intermediate structure generation and data persistance.
@@ -7,11 +7,11 @@ performing sourcing, intermediate structure generation and data persistance.
 
 ### Sourcing
 
-An ETL process is kicked off by configuring a process. For a basic CSV file
+A `MiniEtl` `Process` is kicked off by configuring a process. For a basic CSV file
 deserialize and bulk load:
 
 ```
-process = Etl.create_process do |process|
+process = MiniEtl.create_process do |process|
   process.source.type = :csv
   process.source.location = 'samples/small.csv'
 end
@@ -22,7 +22,7 @@ process.bootstrap
 TODO: Write a strategy for HTTP, use JSON server
 
 ```
-process = Etl.create_process do |process|
+process = MiniEtl.create_process do |process|
   process.source.type = :http
   process.source.location = 'localhost:8080/sample'
 end
@@ -34,7 +34,7 @@ Strategies are available for CSV and JSON. If you need something else entirely,
 a manual source can be used instead:
 
 ```
-process = Etl.create_process do |process|
+process = MiniEtl.create_process do |process|
   process.source.type = :manual
   process.source.method = Proc.new do
     ...
@@ -47,7 +47,7 @@ end
 Once data sourcing is complete, data can be fetched in-place.
 
 ```
-process = Etl.create_process do |process|
+process = MiniEtl.create_process do |process|
   process.source.type = :csv
   process.source.location = 'samples/small.csv'
 end
@@ -62,7 +62,7 @@ If the data source is too large to process in memory, an iterator can be given
 instead:
 
 ```
-process = Etl.create_process do |process|
+process = MiniEtl.create_process do |process|
   process.source.type = :csv
   process.source.location = 'samples/large.csv'
   process.generator.lazy = true
@@ -81,7 +81,7 @@ any kind of way you need it to. The receiver class is expected to respond to
 `.create(args)`
 
 ```
-process = Etl.create_process do |process|
+process = MiniEtl.create_process do |process|
   process.source.type = :csv
   process.source.location = 'samples/large.csv'
   process.store.type = Person # An active record model
@@ -104,7 +104,7 @@ class Payroll
   end
 end
 
-process = Etl.create_process do |process|
+process = MiniEtl.create_process do |process|
   process.source.type = :csv
   process.source.location = 'samples/small.csv'
   process.store.type = Payroll

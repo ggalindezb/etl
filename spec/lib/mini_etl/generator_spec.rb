@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Etl::Generator do
+describe MiniEtl::Generator do
   describe '#initialize' do
     subject { described_class.new }
 

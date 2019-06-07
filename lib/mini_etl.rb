@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require 'etl/version'
+require 'mini_etl/version'
 
 require 'rubygems'
 require 'bundler'
 Bundler.require(:default)
 
-require 'etl/util/status'
-require 'etl/strategy'
-require 'etl/strategies/csv_strategy'
-require 'etl/source'
-require 'etl/generator'
-require 'etl/process'
+require 'mini_etl/util/status'
+require 'mini_etl/strategy'
+require 'mini_etl/strategies/csv_strategy'
+require 'mini_etl/source'
+require 'mini_etl/generator'
+require 'mini_etl/process'
 
 # Place exception here
-module Etl
+module MiniEtl
   class << self
     def create_process(&block)
       return nil unless block_given?

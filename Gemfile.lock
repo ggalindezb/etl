@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    etl (0.1.0)
+    mini_etl (0.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -59,8 +59,8 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  etl!
   faker (~> 1.9)
+  mini_etl!
   pry (~> 0.12.2)
   rake (~> 10.0)
   rspec (~> 3.0)

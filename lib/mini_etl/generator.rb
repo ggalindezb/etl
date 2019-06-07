@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Etl
+module MiniEtl
   # Generate record information from a source
   class Generator
     VALID_STATES = {
@@ -34,7 +34,7 @@ module Etl
     def transform
       failed! && return unless bootstrapped?
 
-      strategy = Etl::Strategy.for(@type)
+      strategy = MiniEtl::Strategy.for(@type)
       @payload = strategy.generate(@data)
       transformed!
     end
