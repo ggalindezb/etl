@@ -19,10 +19,13 @@ module Etl
     # TODO: This needs to know the type of the receiver
     def initialize
       @lazy = false
+      @payload = []
       initialized!
     end
 
     def bootstrap(type, data)
+      raise ArgumentError if type.nil? || data.nil?
+
       @type = type
       @data = data
       bootstrapped!
