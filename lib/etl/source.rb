@@ -41,18 +41,5 @@ module Etl
         failed!
       end
     end
-
-    private
-
-    def source_strategy
-      strategy_constant = "#{@type.to_s.upcase}Strategy"
-
-      if Etl::Strategies.const_defined?(strategy_constant)
-        @source_strategy ||= Etl::Strategies.const_get(strategy_constant).new(self)
-      else
-        failed!
-        nil
-      end
-    end
   end
 end
