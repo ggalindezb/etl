@@ -28,19 +28,18 @@ module Etl
       bootstrapped!
     end
 
-    # TODO: Call a Strategy to transform the given source payload
     def transform
       failed! && return unless bootstrapped?
 
       strategy = Etl::Strategy.for(@type)
-      @payload = strategy.transform(@data)
+      @payload = strategy.generate(@data)
       transformed!
     end
 
     # TODO: This needs to feed a block with source data, to stream a structure
     # generation instead of doing it in place
-    def start
-      yield @structure.next if @lazy && block_given?
-    end
+    # def start
+    #   yield @structure.next if @lazy && block_given?
+    # end
   end
 end

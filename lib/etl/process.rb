@@ -14,9 +14,7 @@ module Etl
     }.freeze
 
     include Status
-
-    attr_reader :source
-    attr_reader :generator
+    attr_reader :source, :generator
 
     def initialize
       @source = Source.new
@@ -41,6 +39,7 @@ module Etl
       # This may be done in rails. Provide a useful interface in that case
       # TODO: Load the thing wherever it needs to go
       if bootstrapped?
+        @generator.transform
         generated!
       else
         failed!
